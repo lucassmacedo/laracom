@@ -10,8 +10,9 @@ use App\Shop\Products\Product;
 use App\Shop\Products\Repositories\ProductRepository;
 use Tests\TestCase;
 
-class ProductAttributeUnitTest extends TestCase
+class ProductCommentsUnitTest extends TestCase
 {
+
     /** @test */
     public function it_throws_error_when_the_product_comment_is_not_found()
     {
