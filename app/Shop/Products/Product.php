@@ -5,6 +5,7 @@ namespace App\Shop\Products;
 use App\Shop\Brands\Brand;
 use App\Shop\Categories\Category;
 use App\Shop\ProductAttributes\ProductAttribute;
+use App\Shop\ProductComments\ProductComment;
 use App\Shop\ProductImages\ProductImage;
 use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Model;
@@ -110,5 +111,13 @@ class Product extends Model implements Buyable
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(ProductComment::class);
     }
 }

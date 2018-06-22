@@ -6,6 +6,7 @@ use App\Shop\AttributeValues\AttributeValue;
 use App\Shop\Base\BaseRepository;
 use App\Shop\Brands\Brand;
 use App\Shop\ProductAttributes\ProductAttribute;
+use App\Shop\ProductComments\ProductComment;
 use App\Shop\ProductImages\ProductImage;
 use App\Shop\Products\Exceptions\ProductInvalidArgumentException;
 use App\Shop\Products\Exceptions\ProductNotFoundException;
@@ -307,4 +308,41 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
         return $this->model->brand;
     }
+
+
+    /**
+     * Associate the product comment to the product
+     *
+     * @param ProductComment $productComment
+     * @return ProductComment
+     */
+    public function saveProductComments(ProductComment $productComment) : ProductComment
+    {
+        $this->model->comments()->save($productComment);
+        return $productComment;
+    }
+
+    /**
+     * List all the product comments associated with the product
+     *
+     * @return Collection
+     */
+    public function listProductComments() : Collection
+    {
+        return $this->model->comments()->get();
+    }
+
+    /**
+     * Delete the comment from the product
+     *
+     * @param ProductComment $productComment
+     *
+     * @return bool|null
+     * @throws \Exception
+     */
+    public function removeProductComments(ProductComment $productComment) : ?bool
+    {
+        return $productComment->delete();
+    }
+
 }

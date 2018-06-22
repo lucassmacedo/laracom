@@ -3,8 +3,7 @@
 namespace App\Shop\ProductComments\Repositories;
 
 use App\Shop\Base\BaseRepository;
-use App\Shop\ProductAttributes\Exceptions\ProductAttributeNotFoundException;
-use App\Shop\ProductAttributes\ProductAttribute;
+use App\Shop\ProductComments\Exceptions\ProductCommentNotFoundException;
 use App\Shop\ProductComments\ProductComment;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -23,14 +22,14 @@ class ProductCommentRepository extends BaseRepository implements ProductCommentR
     /**
      * @param int $id
      * @return mixed
-     * @throws ProductAttributeNotFoundException
+     * @throws ProductCommentNotFoundException
      */
-    public function findProductAttributeById(int $id)
+    public function findProductCommentById(int $id)
     {
         try {
             return $this->findOneOrFail($id);
         } catch (ModelNotFoundException $e) {
-            throw new ProductAttributeNotFoundException($e);
+            throw new ProductCommentNotFoundException($e);
         }
     }
 }
