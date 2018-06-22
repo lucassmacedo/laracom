@@ -6,6 +6,7 @@ use App\Shop\Base\BaseRepository;
 use App\Shop\ProductComments\Exceptions\ProductCommentNotFoundException;
 use App\Shop\ProductComments\ProductComment;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Collection;
 
 class ProductCommentRepository extends BaseRepository implements ProductCommentRepositoryInterface
 {
@@ -18,7 +19,18 @@ class ProductCommentRepository extends BaseRepository implements ProductCommentR
         parent::__construct($productComment);
         $this->model = $productComment;
     }
-
+    /**
+     * List all the products comments
+     *
+     * @param string $order
+     * @param string $sort
+     * @param array $columns
+     * @return Collection
+     */
+    public function listComments(string $order = 'id', string $sort = 'desc', array $columns = ['*']) : Collection
+    {
+        return $this->all($columns, $order, $sort);
+    }
     /**
      * @param int $id
      * @return mixed
